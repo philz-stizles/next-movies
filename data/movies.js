@@ -36,3 +36,12 @@ export const getMovies = (milliseconds) => {
         }, milliseconds)
     })
 }
+
+export const getMovieById = (id, milliseconds) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(MOVIE_DATA.find(item => item.id === id))
+            // reject('Cannot fetch data')
+        }, milliseconds)
+    })
+}

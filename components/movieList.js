@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
+import Link from 'next/link'
 import { shorten } from '../utils/textUtils'
 
-class MovieList extends Component {
+const MovieList = ({ movies }) => {
 
-    renderMovies = (movies) => {
+    const renderMovies = (movies) => {
         return movies.map(({ id, image, name, description, rating }) => (
             <div className="col" key={id}>
                 <div className="card h-100">
                     <img src={image} className="card-img-top" alt="..." />
                     <div className="card-body">
-                        <h5 className="card-title"><a href="#!">{name}</a></h5>
+                        <h5 className="card-title"><Link href={`movies/${id}`}><a>{name}</a></Link></h5>
                         <p className="card-text">{shorten(description, 150)}</p>
                     </div>
                     <div className="card-footer">
@@ -20,16 +21,13 @@ class MovieList extends Component {
         ))
     }
 
-    render() {
-        const { movies } = this.props
-        return (
-            <div className="row row-cols-1 row-cols-md-3 g-4">
-                {
-                    this.renderMovies(movies)
-                }
-            </div>
-        )
-    }
+    return (
+        <div className="row row-cols-1 row-cols-md-3 g-4">
+            {
+                renderMovies(movies)
+            }
+        </div>
+    )
 }
 
 export default MovieList
