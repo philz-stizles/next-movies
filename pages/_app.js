@@ -1,4 +1,4 @@
-import { Component, Fragment } from 'react'
+import App from 'next/app'
 import Head from 'next/head'
 import { Navbar } from '../components/navbar'
 import { Footer } from '../components/footer'
@@ -7,7 +7,7 @@ import '../styles/globals.css'
 
 // Use _app to setup layout for your application
 // The default component inside _app will take the routed Component as props
-class MainApp extends Component {
+class MainApp extends App {
   render() {
     const { Component, pageProps } = this.props
     // Component holds page you are navigating to

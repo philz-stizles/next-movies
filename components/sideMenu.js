@@ -1,13 +1,28 @@
-import React from 'react'
+import React, { Fragment } from 'react'
+import { createMovie } from '../data/movies-data'
+import Modal from './modal'
+import MovieForm from './movieForm'
 
-export const SideMenu = () => {
+const SideMenu = ({ categories }) => {
+    let modal = null
+
+    const handleFormSubmit = async (movie) => {
+        const newMovie = await createMovie(movie)
+        modal.closeModal()
+    }
+
     return (
-        <ul className="list-group">
-            <li className="list-group-item">Cras justo odio</li>
-            <li className="list-group-item">Dapibus ac facilisis in</li>
-            <li className="list-group-item">Morbi leo risus</li>
-            <li className="list-group-item">Porta ac consectetur ac</li>
-            <li className="list-group-item">Vestibulum at eros</li>
-        </ul>
+        <Fragment>
+            <Modal ref={element => modal = element } hasSubmit={false}><MovieForm onFormSubmit={handleFormSubmit} /></Modal>
+            <ul className="list-group">
+                {
+                    categories.map(({ id, name }) => (
+                        <li key={id} className="list-group-item">{name}</li>
+                    ))
+                }
+            </ul>
+        </Fragment>
     )
 }
+
+export default SideMenu

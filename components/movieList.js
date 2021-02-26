@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Link from 'next/link'
 import { shorten } from '../utils/textUtils'
 
@@ -8,9 +8,9 @@ const MovieList = ({ movies }) => {
         return movies.map(({ id, image, name, description, rating }) => (
             <div className="col" key={id}>
                 <div className="card h-100">
-                    <img src={image} className="card-img-top" alt="..." />
+                    <Link href="/movies/[id]" as={`/movies/${id}`}><a><img src={image} className="card-img-top" alt="..." /></a></Link>
                     <div className="card-body">
-                        <h5 className="card-title"><Link href={`movies/${id}`}><a>{name}</a></Link></h5>
+                        <h5 className="card-title"><Link href="/movies/[id]" as={`/movies/${id}`}><a>{name}</a></Link></h5>
                         <p className="card-text">{shorten(description, 150)}</p>
                     </div>
                     <div className="card-footer">
